@@ -1,0 +1,216 @@
+body{
+    cursor:default;
+    background-color: var(--color-background-body);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins;
+}
+.calculator{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    position: relative;
+    background-image: linear-gradient(140deg, #3B3E4C, #1E222F);
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 50px 150px 150px #2b2e36;
+}
+.calculator .screen{
+    height: 200px; 
+    padding-top: 50px;
+    color: #bbbbbb;
+    font-size: 50px;
+    text-align: right;
+}
+.calculator .screen .new{
+    color: #fff;
+    font-size: 80px;
+}
+.calculator .buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: repeat(5, 70px);
+    gap: 10px;
+    width: 100%;
+}
+.calculator .buttons button{
+    width: 70px; /* Set width and height to the same value for a perfect circle */
+    height: 70px;
+    border-radius: 50%; /* Fully round the button */
+    border: none;   
+    font-family: 'Poppins', sans-serif;
+    font-size: x-large;
+    color: #efefef;
+    background-image: linear-gradient(140deg, #262B39, #323847);
+    box-shadow: inset 5px 5px 5px #323847,
+        inset -5px -5px 20px #323847,
+        5px 5px 5px #1d1f25;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calculator .buttons button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+.calculator .buttons button:nth-child(17){
+    grid-column: span 2; /* Expand the button across two columns */
+    width: 100%;         /* Ensure the width fits the grid cell */
+}
+.calculator .buttons button:nth-child(-n+3){
+    background-image: linear-gradient(140deg, #3b424d, #5D697A);
+    box-shadow: inset 5px 5px 5px #5D697A,
+        inset -5px -5px 20px #5D697A,
+        5px 5px 5px #1d1f25;
+}
+.calculator .buttons button:nth-child(4n),
+.calculator .buttons button:nth-child(19){
+    background-image: linear-gradient(140deg, #BC5A17, #E09121);
+    box-shadow: inset 5px 5px 5px #E09121,
+        inset -5px -5px 20px #e99725,
+        5px 5px 5px #1d1f25;
+}
+.calculator .buttons button:active{
+    box-shadow: none;
+} 
+
+.toggle-container {
+    margin-bottom: 10px; /* Add some space below the toggle */
+    align-self: flex-end; /* Align toggle to the right */
+    
+  }
+
+.screen {
+    height: 200px; 
+    padding-top: 50px;
+    color: #bbbbbb;
+    font-size: 50px;
+    width: 100%;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px; /* Rounded corners */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%; /* Round knob */
+    transition: .4s;
+}
+
+/* Checked state */
+input:checked + .slider {
+    background-color: #2196F3; /* Blue background for toggle */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px); /* Move knob to the right */
+}
+
+/* Light mode styles */
+body.light-mode {
+    background-color: #ffffff; /* Light background */
+}
+body.light-mode .calculator .screen .new {
+    color: #000;
+}
+
+.calculator.light-calculator {
+    background-image: linear-gradient(140deg, #e3e3e3, #ffffff); /* Light gradient */
+    color: #333; /* Dark text for contrast */
+}
+
+.calculator.light-calculator .screen {
+    color: #333; /* Change text color for light mode */
+}
+
+.calculator.light-calculator .buttons button {
+    background-image: linear-gradient(140deg, #f0f0f0, #d0d0d0); /* Light button colors */
+    color: #000; /* Dark text on buttons */
+}
+
+.logo-container {
+    position: fixed; /* Fixes the logo in place while loading */
+    top: 40%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for centering */
+    z-index: 10; /* Ensure it’s on top */
+}
+
+.logo {
+    width: 140px; /* Adjust width as necessary */
+    opacity: 0; /* Start hidden */
+    transform: scale(0); /* Start small */
+    animation: zoomIn 1.2s forwards; /* Animation effect */
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0; /* Start invisible */
+        transform: scale(0); /* Start small */
+    }
+    100% {
+        opacity: 1; /* Fully visible */
+        transform: scale(1); /* Full size */
+    }
+}
+
+/* Hide the logo after animation */
+.hide-logo {
+    display: none;
+}
+
+/* Style for the calculator initially hidden */
+.calculator {
+    display: none; /* Start hidden */
+}
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height to center the logo */
+}
+
+.header {
+    text-align: center; /* Center the text */
+    margin-top: 10px; /* Space between the logo and the text */
+}
+
+.header h1 {
+    font-family: 'Pacifico', cursive; /* Use the imported script font */
+    color: #0e0d0d; /* Change text color if necessary */
+    font-size: 20px; /* Adjust size as needed */
+}
+
+
